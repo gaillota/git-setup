@@ -31,7 +31,7 @@ else
 
 	if [ "$isMaster" ]; then
 		echo "Setting up upstream branch"
-		git branch --set-upstream-to origin master
+		git branch --set-upstream-to origin
 	fi
 
 	echo "Setting up push default"

@@ -12,7 +12,7 @@ git config --global user.email %email%
 git rev-parse --abbrev-ref HEAD | find /i "master"
 IF %ERRORLEVEL% == 0 (
 	ECHO "Setting up upstream branch"
-	git branch --set-upstream-to origin master
+	git branch --set-upstream-to origin
 )
 
 ECHO "Setting up push default"
