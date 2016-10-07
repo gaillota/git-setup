@@ -1,4 +1,4 @@
-#!/bin/bash
+#!bin/bash
 
 # Is Git installed?
 set +e
@@ -14,6 +14,7 @@ if [ ! "$hasGit" ]; then
 	        No ) exit;;
 	    esac
 	done
+	echo "Git successfully installed. Re-run script to setup configuration"
 else
 	echo "Enter your git username:"
 	read _USERNAME
@@ -24,9 +25,14 @@ else
 	git config --global user.name ${_USERNAME}
 	git config --global user.email ${_EMAIL}
 
-	echo "Setting up upstream branch"
-	git checkout -b master
-	git branch --set-upstream-to origin master
+	set +e
+	isMaster=$(git rev-parse --abbrev-ref HEAD | grep "master")
+	set -e
+
+	if [ "$isMaster" ]; then
+		echo "Setting up upstream branch"
+		git branch --set-upstream-to origin master
+	fi
 
 	echo "Setting up push default"
 	git config --global push.default matching
