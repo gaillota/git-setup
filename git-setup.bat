@@ -1,22 +1,19 @@
 @echo off
 
-::Is Git installed ?
-WHERE git
-IF %ERRORLEVEL% NEQ 0 (
-	ECHO "You need to install Git first."
-	GOTO :end
-)
+::TODO: Check if Git is installed ?
 
-SET /p username="Enter your git username: "
-SET /p email="Enter your git email: "
+SET /P username="Enter your git username:"
+SET /P email="Enter your git email: "
 
 ECHO "Setting up user informations..."
 git config --global user.name %username%
 git config --global user.email %email%
 
-ECHO "Setting up upstream branch"
-git checkout -b master
-git branch --set-upstream-to origin master
+git rev-parse --abbrev-ref HEAD | find /i "master"
+IF %ERRORLEVEL% == 0 (
+	ECHO "Setting up upstream branch"
+	git branch --set-upstream-to origin master
+)
 
 ECHO "Setting up push default"
 git config --global push.default matching
