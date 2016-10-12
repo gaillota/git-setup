@@ -25,15 +25,6 @@ else
 	git config --global user.name ${_USERNAME}
 	git config --global user.email ${_EMAIL}
 
-	set +e
-	isMaster=$(git rev-parse --abbrev-ref HEAD | grep "master")
-	set -e
-
-	if [ "$isMaster" ]; then
-		echo "Setting up upstream branch"
-		git branch --set-upstream-to origin
-	fi
-
 	echo "Setting up push default"
 	git config --global push.default matching
 

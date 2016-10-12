@@ -9,12 +9,6 @@ ECHO "Setting up user informations..."
 git config --global user.name %username%
 git config --global user.email %email%
 
-git rev-parse --abbrev-ref HEAD | find /i "master"
-IF %ERRORLEVEL% == 0 (
-	ECHO "Setting up upstream branch"
-	git branch --set-upstream-to origin
-)
-
 ECHO "Setting up push default"
 git config --global push.default matching
 
