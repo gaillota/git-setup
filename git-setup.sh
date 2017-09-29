@@ -26,15 +26,19 @@ else
 	git config --global user.email ${_EMAIL}
 
 	echo "Setting up push default"
-	git config --global push.default matching
+	git config --global push.default current
 
 	echo "Setting up aliases..."
-	git config --global alias.co checkout
-	git config --global alias.ci commit
-	git config --global alias.st status
-	git config --global alias.br branch
-	git config --global alias.cb checkout -b
-	git config --global alias.cm commit -m
+ 	git config --global alias.st status
+ 	git config --global alias.co checkout
+ 	git config --global alias.ci commit
+ 	git config --global alias.br branch
+ 	git config --global alias.cb checkout -b
+ 	git config --global alias.cm commit -m
+ 	git config --global alias.ba branch -a
+ 	git config --global alias.bd branch -d
+ 	git config --global alias.bdf branch -D
+ 	git config --global alias.cb checkout -b
 
 	echo "Configuration is done !"
 fi
